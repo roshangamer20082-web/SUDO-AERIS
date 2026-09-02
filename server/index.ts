@@ -31,3 +31,18 @@ async function startServer() {
 }
 
 startServer().catch(console.error);
+
+app.post("/inference", (req, res) => {
+  setTimeout(() => {
+    res.json({
+      status: "complete",
+      inputResolution: "10m",
+      outputResolution: "1m",
+      model: "S2DR3",
+      psnr: 32.41,
+      ssim: 0.941,
+      inputImage: req.body.inputImage || "https://placehold.co/600x400/png?text=10m+Input",
+      outputImage: "https://placehold.co/600x400/png?text=1m+S2DR3+Output"
+    });
+  }, 1500);
+});
